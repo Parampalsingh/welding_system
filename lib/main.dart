@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:welding_system/Providers/screenIndexProvider.dart';
+import 'package:welding_system/Screen/login_page.dart';
 import 'package:welding_system/Widgets/homescreen.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       child: MaterialApp(
-        home: HomeScreen(),
+        home: LoginPage(),
         debugShowCheckedModeBanner: false,
       ),
       providers: [

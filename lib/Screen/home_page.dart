@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                   Text(wobble_speed,
                       style: TextStyle(
                           color: ColorSelect.TheamColor, fontSize: 20)),
-                  Text("1000 MM/S",
+                  Text("1000 mm/s",
                       style: TextStyle(color: ColorSelect.black, fontSize: 18)),
                 ],
               ),

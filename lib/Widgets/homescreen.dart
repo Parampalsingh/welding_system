@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:welding_system/Providers/screenIndexProvider.dart';
@@ -34,22 +35,22 @@ class HomeScreen extends StatelessWidget {
           BottomNavigationBarItem(
             label: 'Home',
             icon: Icon(Icons.home,
-                color: (currentScreenIndex == 0) ? Colors.white : Colors.grey),
+                color: (currentScreenIndex == 0) ? Colors.white : CupertinoColors.systemGrey2),
           ),
           BottomNavigationBarItem(
             label: 'Laser',
             icon: Icon(Icons.light_mode,
-                color: (currentScreenIndex == 1) ? Colors.white : Colors.grey),
+                color: (currentScreenIndex == 1) ? Colors.white : CupertinoColors.systemGrey2),
           ),
           BottomNavigationBarItem(
             label: 'Galvanometer',
             icon: Icon(Icons.electric_meter,
-                color: (currentScreenIndex == 2) ? Colors.white : Colors.grey),
+                color: (currentScreenIndex == 2) ? Colors.white : CupertinoColors.systemGrey2),
           ),
           BottomNavigationBarItem(
             label: 'Wire',
             icon: Icon(Icons.cable,
-                color: (currentScreenIndex == 3) ? Colors.white : Colors.grey),
+                color: (currentScreenIndex == 3) ? Colors.white : CupertinoColors.systemGrey2),
           ),
         ],
       ),

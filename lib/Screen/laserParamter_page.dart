@@ -93,24 +93,6 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(point_ontime,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  Text("100 MS",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(point_offtime,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  Text("100 MS",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
-                ],
-              ),
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,6 +109,24 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                 children: [
                   Text(laser_vol_range,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
                   Text("0 V- 10 V",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
+                ],
+              ),
+              SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(point_ontime,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
+                  Text("100 MS",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
+                ],
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(point_offtime,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
+                  Text("100 MS",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
                 ],
               ),
               SizedBox(height: 20),
