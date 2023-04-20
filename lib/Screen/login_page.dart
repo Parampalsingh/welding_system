@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:welding_system/Screen/home_page.dart';
 import 'package:welding_system/Widgets/AppBars.dart';
+import 'package:welding_system/Widgets/Colors.dart';
 import 'package:welding_system/Widgets/homescreen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -45,12 +46,12 @@ class _LoginPageState extends State<LoginPage> {
                   child: Container(
                     child: TextButton(
                       style: ButtonStyle(
-                          foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor: MaterialStateProperty.all<Color>(ColorSelect.TheamColor),
                           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  side: BorderSide(color: Colors.yellow)
+                                  side: BorderSide(color: ColorSelect.TheamColor)
                               )
                           )
 

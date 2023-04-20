@@ -48,3 +48,7 @@ const stop_interval = "Stop Interval";
 const feeding_direction = "Feeding Direction";
 const feeding_mode = "Feeding Mode";
 const parameter_reset = "Parameter Reset";
+
+//galvo
+const galvo_zoom = "Galvo zoom gain";
+const wooble_speed = "Wooble Speed";

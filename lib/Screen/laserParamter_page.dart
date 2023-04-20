@@ -29,7 +29,6 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
           margin: const EdgeInsets.all(30),
           child: Column(
             children: [
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,

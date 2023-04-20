@@ -24,12 +24,38 @@ class _GalvanometerParameterState extends State<GalvanometerParameter> {
           margin: const EdgeInsets.all(30),
           child: Column(
             children: [
-
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(galvo_zoom,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
+                  Text("1.0",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
+                ],
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(wooble_speed,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
+                  Text("3000 mm/s",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
+                ],
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(swing_width,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
+                  Text("3.",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
+                ],
+              ),
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(pe_protect,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
+                  Text(swing_switch,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
                   CupertinoSwitch(
                     value: preProtect,
                     onChanged: (value) {
@@ -40,102 +66,6 @@ class _GalvanometerParameterState extends State<GalvanometerParameter> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(auto_shutter,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  CupertinoSwitch(
-                    value: true,
-                    onChanged: (value) {
-                      print(value);
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(foot_protect,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  CupertinoSwitch(
-                    value: true,
-                    onChanged: (value) {
-                      print(value);
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(welding_mode,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  CupertinoSwitch(
-                    value: true,
-                    onChanged: (value) {
-                      print(value);
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(point_ontime,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  Text("100 MS",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(point_offtime,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  Text("100 MS",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(laser_power,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  Text("0 W- 1500 W",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(laser_vol_range,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  Text("0 V- 10 V",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(on_gasDelay,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  Text("0 mS",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(off_gasDelay,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  Text("200 MS",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
-                ],
-              )
             ],
           ),
 
