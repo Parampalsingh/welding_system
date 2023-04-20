@@ -11,6 +11,8 @@ class WireFeederPage extends StatefulWidget {
 
 class _WireFeederPageState extends State<WireFeederPage> {
   int? groupValue = 0;
+  bool feedingDirection = false;
+  bool feedingMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,8 @@ class _WireFeederPageState extends State<WireFeederPage> {
             ] else if (groupValue == 1) ...[
               parameterSegment()
             ] else if (groupValue == 2) ...[
-              settingSegment()
+
+              settingSegment(context)
             ]
           ],
         ),
@@ -380,8 +383,8 @@ Widget parameterSegment() {
     ),
   );
 }
-
-Widget settingSegment() {
+@override
+Widget settingSegment(BuildContext context) {
   bool feedingDirection = false;
   bool feedingMode = false;
   return Container(
@@ -414,6 +417,7 @@ Widget settingSegment() {
             CupertinoSwitch(
               value: feedingMode,
               onChanged: (value) {
+
                 feedingMode = value;
               },
             ),
