@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:welding_system/Widgets/Colors.dart';
 
 class AppBars extends AppBar {
+
   AppBars():super(
     iconTheme: IconThemeData(
       color: Colors.black, //change your color here
@@ -12,14 +15,14 @@ class AppBars extends AppBar {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "LHSW 200",
+          "Flexiweld",
           style: TextStyle(color: Colors.white,fontSize: 20),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              "Date : 2023/04/01",
+              "Date : " + DateFormat.yMMMEd().format(DateTime.now()).toString(),
               style: TextStyle(color: Colors.white,fontSize: 14),
             ),
             SizedBox(),

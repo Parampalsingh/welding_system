@@ -28,18 +28,6 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               SizedBox(height: 100),
-              // Text("SSID"),
-              // SizedBox(height: 10),
-              // TextField(
-              //   controller: idcontroller,
-              // ),
-              // SizedBox(height: 20),
-              // Text("Password"),
-              // SizedBox(height: 10),
-              // TextField(
-              //   controller: passwordcontroller,
-              //
-              // ),
               Align(
                 child: Text("WELDING SYSTEM",
                     style: TextStyle(

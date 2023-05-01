@@ -10,4 +10,5 @@ class screenIndexProvider extends ChangeNotifier {
     screenIndex = newIndex;
     notifyListeners(); // This will notify every listeners that the screen index has been changed
   }
+
 }

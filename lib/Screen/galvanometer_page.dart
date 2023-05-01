@@ -47,7 +47,7 @@ class _GalvanometerParameterState extends State<GalvanometerParameter> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(swing_width,style: TextStyle(color: ColorSelect.TheamColor,fontSize: 20)),
-                  Text("3.",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
+                  Text("3.0",style: TextStyle(color: ColorSelect.black,fontSize: 18)),
                 ],
               ),
               SizedBox(height: 20),
