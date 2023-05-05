@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:welding_system/Screen/home_page.dart';
 import 'package:welding_system/Widgets/AppBars.dart';
 import 'package:welding_system/Widgets/Colors.dart';
+import 'package:welding_system/Widgets/data_sync.dart';
 import 'package:welding_system/Widgets/homescreen.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:web_socket_channel/status.dart' as status;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,7 +13,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool preProtect = false;
-  late WebSocketChannel channel;
+  final DataUpdate dataUpdate = new DataUpdate();
+
   // TextEditingController idcontroller = TextEditingController();
   // TextEditingController passwordcontroller = TextEditingController();
 
@@ -57,7 +56,8 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => HomeScreen()));
                       },
-                      child: Text("Verify WiFi",style: TextStyle(fontSize: 14)),
+                      child:
+                          Text("Verify WiFi", style: TextStyle(fontSize: 14)),
                     ),
                   ),
                 ),
@@ -81,12 +81,14 @@ class _LoginPageState extends State<LoginPage> {
                                       side: BorderSide(
                                           color: ColorSelect.TheamColor)))),
                       onPressed: () {
-                        Future.delayed(Duration.zero,() async {
-                          channelConnect(); //connect to WebSocket wth NodeMCU
+                        Future.delayed(Duration.zero, () async {
+                          dataUpdate.channelConnect().then(
+                                (value) => print(value),
+                              ); //connect to WebSocket wth NodeMCU
                         });
-
                       },
-                      child: Text("Connect Hardware",style: TextStyle(fontSize: 14)),
+                      child: Text("Connect Hardware",
+                          style: TextStyle(fontSize: 14)),
                     ),
                   ),
                 ),
@@ -96,35 +98,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-  channelConnect() async {
-    final wsUrl = Uri.parse("ws://192.168.0.1:81");
-    channel = WebSocketChannel.connect(wsUrl);
-
-    channel.stream.listen((message) {
-      final response = jsonDecode(message);
-
-      String body = response['data']['message'];
-
-
-      if(body== "connected"){
-        channel.sink.add('home');
-        print(">>>>>>>>>>>>>>>>"+message);
-
-        /*  Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => HomeScreen()));*/
-
-      }else if(body == "homeData"){
-        print(">>>>>>>>>>>>>>>>"+message);
-        final response = jsonDecode(message);
-        final value = response['data']['value'];
-        String laserValue= value['DutyCycle'].toString();
-        print(">>>>>>>>>>>>>>>>"+laserValue);
-
-      }
-
-      // channel.sink.add('received!');
-      //channel.sink.close(status.goingAway);
-    });
   }
 }

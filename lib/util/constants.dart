@@ -52,3 +52,5 @@ const parameter_reset = "Parameter Reset";
 //galvo
 const galvo_zoom = "Galvo zoom gain";
 const wooble_speed = "Wooble Speed";
+const submit = "Submit";
+

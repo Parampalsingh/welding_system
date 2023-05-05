@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:welding_system/Widgets/AppBars.dart';
 import 'package:welding_system/Widgets/Colors.dart';
+import 'package:welding_system/Widgets/data_sync.dart';
 import 'package:welding_system/util/constants.dart';
 
 class LaserParameterPage extends StatefulWidget {
@@ -17,8 +18,7 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
   bool foodProtect = false;
   bool weldingMode = false;
   bool showAlert = false;
-
-
+  final DataUpdate dataUpdate = new DataUpdate();
 
   TextEditingController _LaserPowercontroller = TextEditingController();
   TextEditingController _LaserVoltagecontroller = TextEditingController();
@@ -27,10 +27,16 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
   TextEditingController _OnGascontroller = TextEditingController();
   TextEditingController _OffGascontroller = TextEditingController();
 
-
   @override
   void initState() {
     super.initState();
+
+    Map<String, String> query = {'screen': "laser"};
+
+    dataUpdate.getData(query).then((value) => {
+          print(value),
+        });
+
     _LaserPowercontroller = new TextEditingController(text: '1500');
     _LaserVoltagecontroller = new TextEditingController(text: '0');
     _PointOnTimecontroller = new TextEditingController(text: '100');
@@ -87,9 +93,13 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                       setState(() {
                         if (showAlert == true) {
                           preProtect = value;
+
+                          Map<String, dynamic> map1 = {
+                            'swingSwitch': value == true ? 1:0,
+                          };
+                          dataUpdate.postData(map1);
                         } else {
                           _showTextInputDialog(context);
-
                         }
                       });
                     },
@@ -109,6 +119,11 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                     onChanged: (value) {
                       setState(() {
                         autoShutter = value;
+
+                        Map<String, dynamic> map1 = {
+                          'autoShutter': value == true ? 1:0,
+                        };
+                        dataUpdate.postData(map1);
                       });
                     },
                   ),
@@ -128,9 +143,14 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                       setState(() {
                         if (showAlert == true) {
                           foodProtect = value;
+
+                          Map<String, dynamic> map1 = {
+                            'footProtect': value == true ? 1:0,
+                          };
+                          dataUpdate.postData(map1);
+
                         } else {
                           _showTextInputDialog(context);
-
                         }
                       });
                     },
@@ -150,6 +170,12 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                     onChanged: (value) {
                       setState(() {
                         weldingMode = value;
+
+                        Map<String, dynamic> map1 = {
+                          'weldingMode': value == true ? 1:0,
+                        };
+                        dataUpdate.postData(map1);
+
                       });
                     },
                   ),
@@ -170,7 +196,8 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                       SizedBox(
                         width: 50.0,
                         child: new TextField(
-                          style:TextStyle(color: ColorSelect.black, fontSize: 18),
+                          style:
+                              TextStyle(color: ColorSelect.black, fontSize: 18),
                           controller: _LaserPowercontroller,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(
@@ -180,11 +207,10 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                         ),
                       ),
                       Text("W",
-                          style: TextStyle(color: ColorSelect.black, fontSize: 18)),
+                          style: TextStyle(
+                              color: ColorSelect.black, fontSize: 18)),
                     ],
                   ),
-
-
                 ],
               ),
               SizedBox(height: 20),
@@ -202,7 +228,8 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                       SizedBox(
                         width: 50.0,
                         child: new TextField(
-                          style:TextStyle(color: ColorSelect.black, fontSize: 18),
+                          style:
+                              TextStyle(color: ColorSelect.black, fontSize: 18),
                           controller: _LaserVoltagecontroller,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(
@@ -212,7 +239,8 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                         ),
                       ),
                       Text("v",
-                          style: TextStyle(color: ColorSelect.black, fontSize: 18)),
+                          style: TextStyle(
+                              color: ColorSelect.black, fontSize: 18)),
                     ],
                   ),
                 ],
@@ -232,7 +260,8 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                       SizedBox(
                         width: 50.0,
                         child: new TextField(
-                          style:TextStyle(color: ColorSelect.black, fontSize: 18),
+                          style:
+                              TextStyle(color: ColorSelect.black, fontSize: 18),
                           controller: _PointOnTimecontroller,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(
@@ -242,7 +271,8 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                         ),
                       ),
                       Text("MS",
-                          style: TextStyle(color: ColorSelect.black, fontSize: 18)),
+                          style: TextStyle(
+                              color: ColorSelect.black, fontSize: 18)),
                     ],
                   ),
                 ],
@@ -262,7 +292,8 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                       SizedBox(
                         width: 50.0,
                         child: new TextField(
-                          style:TextStyle(color: ColorSelect.black, fontSize: 18),
+                          style:
+                              TextStyle(color: ColorSelect.black, fontSize: 18),
                           controller: _PointOffTimecontroller,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(
@@ -272,7 +303,8 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                         ),
                       ),
                       Text("MS",
-                          style: TextStyle(color: ColorSelect.black, fontSize: 18)),
+                          style: TextStyle(
+                              color: ColorSelect.black, fontSize: 18)),
                     ],
                   ),
                 ],
@@ -292,7 +324,8 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                       SizedBox(
                         width: 50.0,
                         child: new TextField(
-                          style:TextStyle(color: ColorSelect.black, fontSize: 18),
+                          style:
+                              TextStyle(color: ColorSelect.black, fontSize: 18),
                           controller: _OnGascontroller,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(
@@ -302,7 +335,8 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                         ),
                       ),
                       Text("MS",
-                          style: TextStyle(color: ColorSelect.black, fontSize: 18)),
+                          style: TextStyle(
+                              color: ColorSelect.black, fontSize: 18)),
                     ],
                   ),
                 ],
@@ -322,7 +356,8 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                       SizedBox(
                         width: 50.0,
                         child: new TextField(
-                          style:TextStyle(color: ColorSelect.black, fontSize: 18),
+                          style:
+                              TextStyle(color: ColorSelect.black, fontSize: 18),
                           controller: _OffGascontroller,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(
@@ -332,11 +367,37 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                         ),
                       ),
                       Text("MS",
-                          style: TextStyle(color: ColorSelect.black, fontSize: 18)),
+                          style: TextStyle(
+                              color: ColorSelect.black, fontSize: 18)),
                     ],
                   ),
                 ],
-              )
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                width: 120,
+                height: 50,
+                child: TextButton(
+                  style: ButtonStyle(
+                      foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          ColorSelect.TheamColor)),
+                  onPressed: () {
+                    Map<String, String> map1 = {
+                      'screen': "laser",
+                      'laserPowerRange': _LaserPowercontroller.text,
+                      'laserVoltageRange': _LaserVoltagecontroller.text,
+                      'pointOnTime': _PointOnTimecontroller.text,
+                      'pointOffTime': _PointOffTimecontroller.text,
+                      'onGasDelay': _OnGascontroller.text,
+                      'offGasDelay': _OffGascontroller.text,
+                    };
+                    dataUpdate.postData(map1);
+                  },
+                  child: Text(submit),
+                ),
+              ),
             ],
           ),
         ),
@@ -390,11 +451,10 @@ class _LaserParameterPageState extends State<LaserParameterPage> {
                 },
               ),
               ElevatedButton(
-                child: const Text('Cancel'),
-                onPressed: () {
-                  Navigator.pop(context, _textFieldController.text);
-                }
-              ),
+                  child: const Text('Cancel'),
+                  onPressed: () {
+                    Navigator.pop(context, _textFieldController.text);
+                  }),
             ],
           );
         });

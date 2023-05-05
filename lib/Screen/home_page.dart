@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:welding_system/Screen/technique_page.dart';
 import 'package:welding_system/Widgets/AppBars.dart';
 import 'package:welding_system/Widgets/Colors.dart';
+import 'package:welding_system/Widgets/data_sync.dart';
 import 'package:welding_system/util/constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   bool blowswitch = false;
   bool swingswitch = false;
 
+  final DataUpdate dataUpdate = new DataUpdate();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +43,8 @@ class _HomePageState extends State<HomePage> {
                           backgroundColor: MaterialStateProperty.all<Color>(ColorSelect.TheamColor)
                         ),
                         onPressed: () {
-
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => TechniquePage()));
                         },
                         child: Text(technique),
                       ),
