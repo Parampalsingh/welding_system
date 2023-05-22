@@ -54,3 +54,20 @@ const galvo_zoom = "Galvo zoom gain";
 const wooble_speed = "Wooble Speed";
 const submit = "Submit";
 
+//home
+const Welding = "Welding";
+const Cutting = "Cutting";
+const Cleaning = "Cleaning";
+const Weld_seamClean = "Weld seam Clean";
+const laser_powr = "Laser Power(W)";
+const laser_freqey = "Laser Frequency(Hz)";
+const pwm = "PWM";
+const patran = "Pattern";
+const woble_freq = "Wobble Frequency(Hz)";
+const woble_size = "Wobble Size (mm)";
+const lsr = "Laser";
+const gs_manul = "Gas Manual";
+const wire_Fedding = "Wire Feeding";
+const scale_weld = "Scale Weld";
+const Safety_lock = "Safety Lock";
+const sv_progress = "SAVE PROCESS";
