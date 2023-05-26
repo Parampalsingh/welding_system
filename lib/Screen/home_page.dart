@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:welding_system/Widgets/AppBars.dart';
@@ -13,13 +15,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool preProtect = false;
-  bool redLightSwitch = false;
-  bool blowSwitch = false;
-  bool swingSwitch = false;
   int? groupValue = 0;
+  String dropValue = "..(spot)";
 
-  final TextEditingController _swingWidthcontroller = TextEditingController();
+  //textField
+  final TextEditingController _LaserPowerController = TextEditingController();
+  final TextEditingController _LaserFreqController = TextEditingController();
+  final TextEditingController _PWFController = TextEditingController();
+  final TextEditingController _wobbleFreqController = TextEditingController();
+  final TextEditingController _wobbleSizeController = TextEditingController();
+  final TextEditingController _meterialNameController = TextEditingController();
+  final TextEditingController _CleanWidthController = TextEditingController();
+
+  //switch
+  bool laserSwitch = false;
+  bool gasManualSwitch = false;
+  bool wireFeedingSwitch = false;
+  bool scaleWeldSwitch = false;
+  bool SaftyLockSwitch = false;
 
   final DataUpdate dataUpdate = DataUpdate();
 
@@ -67,293 +80,6 @@ class _HomePageState extends State<HomePage> {
                 ] else if (groupValue == 3) ...[
                   Weld_seam_Clean(context)
                 ],
-                Container(
-                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(laser_powr,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
-                            decoration: myBoxDecoration(),
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 20.0,
-                              child: Container(
-                                margin: const EdgeInsets.all(5.0),
-                                child: TextField(
-                                  style: TextStyle(
-                                      color: ColorSelect.black, fontSize: 18),
-                                  controller: _swingWidthcontroller,
-                                  keyboardType: const TextInputType.numberWithOptions(
-                                      signed: true, decimal: true),
-                                  decoration: const InputDecoration.collapsed(
-                                    hintText: "",
-                                    border: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(laser_freqey,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
-                            decoration: myBoxDecoration(),
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 20.0,
-                              child: Container(
-                                margin: const EdgeInsets.all(5.0),
-                                child: TextField(
-                                  style: TextStyle(
-                                      color: ColorSelect.black, fontSize: 18),
-                                  controller: _swingWidthcontroller,
-                                  keyboardType: const TextInputType.numberWithOptions(
-                                      signed: true, decimal: true),
-                                  decoration: const InputDecoration.collapsed(
-                                    hintText: "",
-                                    border: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(pwm,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
-                            decoration: myBoxDecoration(),
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 20.0,
-                              child: Container(
-                                margin: const EdgeInsets.all(5.0),
-                                child: TextField(
-                                  style: TextStyle(
-                                      color: ColorSelect.black, fontSize: 18),
-                                  controller: _swingWidthcontroller,
-                                  keyboardType: const TextInputType.numberWithOptions(
-                                      signed: true, decimal: true),
-                                  decoration: const InputDecoration.collapsed(
-                                    hintText: "",
-                                    border: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(patran,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
-                            decoration: myBoxDecoration(),
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 20.0,
-                              child: DropdownButton<String>(
-                                isExpanded: true,
-                                underline: const SizedBox(),
-                                items: <String>['..(spot)', '--(line)']
-                                    .map((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                                onChanged: (_) {},
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(woble_freq,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
-                            decoration: myBoxDecoration(),
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 20.0,
-                              child: Container(
-                                margin: const EdgeInsets.all(5.0),
-                                child: TextField(
-                                  style: TextStyle(
-                                      color: ColorSelect.black, fontSize: 18),
-                                  controller: _swingWidthcontroller,
-                                  keyboardType: const TextInputType.numberWithOptions(
-                                      signed: true, decimal: true),
-                                  decoration: const InputDecoration.collapsed(
-                                    hintText: "",
-                                    border: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(woble_size,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
-                            decoration: myBoxDecoration(),
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 20.0,
-                              child: Container(
-                                margin: const EdgeInsets.all(5.0),
-                                child: TextField(
-                                  style: TextStyle(
-                                      color: ColorSelect.black, fontSize: 18),
-                                  controller: _swingWidthcontroller,
-                                  keyboardType: const TextInputType.numberWithOptions(
-                                      signed: true, decimal: true),
-                                  decoration: const InputDecoration.collapsed(
-                                    hintText: "",
-                                    border: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(lsr,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          CupertinoSwitch(
-                            value: preProtect,
-                            onChanged: (value) {
-                              setState(() {
-                                preProtect = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(gs_manul,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          CupertinoSwitch(
-                            value: redLightSwitch,
-                            onChanged: (value) {
-                              setState(() {
-                                redLightSwitch = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(wire_Fedding,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          CupertinoSwitch(
-                            value: blowSwitch,
-                            onChanged: (value) {
-                              setState(() {
-                                blowSwitch = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(scale_weld,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          CupertinoSwitch(
-                            value: swingSwitch,
-                            onChanged: (value) {
-                              setState(() {
-                                swingSwitch = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(Safety_lock,
-                              style: TextStyle(
-                                  color: ColorSelect.TheamColor, fontSize: 16)),
-                          CupertinoSwitch(
-                            value: swingSwitch,
-                            onChanged: (value) {
-                              setState(() {
-                                swingSwitch = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                    ],
-                  ),
-                )
               ],
             ),
           ),
@@ -364,33 +90,887 @@ class _HomePageState extends State<HomePage> {
 
   Widget welding(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-        child: const Column(
-          children: [],
-        ));
+      margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(laser_powr),
+              Container(
+                padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                decoration: myBoxDecoration(),
+                child: SizedBox(
+                  width: 80.0,
+                  child: Container(
+                    margin: const EdgeInsets.all(5.0),
+                    child: TextField(
+                      style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                      textAlign: TextAlign.center,
+                      controller: _LaserPowerController,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "300-3000",
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(laser_freqey),
+              Container(
+                padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                decoration: myBoxDecoration(),
+                child: SizedBox(
+                  width: 80.0,
+                  child: Container(
+                    margin: const EdgeInsets.all(5.0),
+                    child: TextField(
+                      style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                      textAlign: TextAlign.center,
+                      controller: _LaserFreqController,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "100-5000",
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(pwm),
+              Container(
+                padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                decoration: myBoxDecoration(),
+                child: SizedBox(
+                  width: 80.0,
+                  child: Container(
+                    margin: const EdgeInsets.all(5.0),
+                    child: TextField(
+                      style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                      textAlign: TextAlign.center,
+                      controller: _PWFController,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "0-100",
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(patran),
+              Container(
+                padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                decoration: myBoxDecoration(),
+                child: SizedBox(
+                  width: 80.0,
+                  height: 30,
+                  child: DropdownButton<String>(
+                    isExpanded: true,
+                    value: dropValue,
+                    dropdownColor: Colors.white,
+                    underline: const SizedBox(),
+                    items: <String>['..(spot)', '--(line)'].map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style:
+                              TextStyle(color: ColorSelect.black, fontSize: 14),
+                          textAlign: TextAlign.center,
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        dropValue = value ?? "";
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(woble_freq),
+              Container(
+                padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                decoration: myBoxDecoration(),
+                child: SizedBox(
+                  width: 80.0,
+                  child: Container(
+                    margin: const EdgeInsets.all(5.0),
+                    child: TextField(
+                      style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                      textAlign: TextAlign.center,
+                      controller: _wobbleFreqController,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "0-200",
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(woble_size),
+              Container(
+                padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                decoration: myBoxDecoration(),
+                child: SizedBox(
+                  width: 80.0,
+                  child: Container(
+                    margin: const EdgeInsets.all(5.0),
+                    child: TextField(
+                      style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                      textAlign: TextAlign.center,
+                      controller: _wobbleSizeController,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "1.0-2.14",
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(lsr),
+              CupertinoSwitch(
+                value: laserSwitch,
+                onChanged: (value) {
+                  setState(() {
+                    laserSwitch = value;
+                  });
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(gs_manul),
+              CupertinoSwitch(
+                value: gasManualSwitch,
+                onChanged: (value) {
+                  setState(() {
+                    gasManualSwitch = value;
+                  });
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(wire_Fedding),
+              CupertinoSwitch(
+                value: wireFeedingSwitch,
+                onChanged: (value) {
+                  setState(() {
+                    wireFeedingSwitch = value;
+                  });
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(scale_weld),
+              CupertinoSwitch(
+                value: scaleWeldSwitch,
+                onChanged: (value) {
+                  setState(() {
+                    scaleWeldSwitch = value;
+                  });
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              label(Safety_lock),
+              CupertinoSwitch(
+                value: SaftyLockSwitch,
+                onChanged: (value) {
+                  setState(() {
+                    SaftyLockSwitch = value;
+                    _showTextInputDialog(context);
+                  });
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TextButton(
+                  style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          ColorSelect.TheamColor)),
+                  onPressed: () {},
+                  child: const Text(
+                    sv_progress,
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: Container(
+                    width: 100,
+                    margin: const EdgeInsets.all(5.0),
+                    child: TextField(
+                      style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                      controller: _meterialNameController,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "Material Name",
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget cutting(BuildContext context) {
+
     return Container(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-        child: const Column(
-          children: [],
+        margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(laser_powr),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _LaserPowerController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "300-3000",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(laser_freqey),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _LaserPowerController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "100-5000",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(pwm),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _LaserPowerController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "0-100",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(lsr),
+                CupertinoSwitch(
+                  value: laserSwitch,
+                  onChanged: (value) {
+                    setState(() {
+                      laserSwitch = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(gs_manul),
+                CupertinoSwitch(
+                  value: gasManualSwitch,
+                  onChanged: (value) {
+                    setState(() {
+                      gasManualSwitch = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(Safety_lock),
+                CupertinoSwitch(
+                  value: SaftyLockSwitch,
+                  onChanged: (value) {
+                    setState(() {
+                      SaftyLockSwitch = value;
+                      _showTextInputDialog(context);
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TextButton(
+                    style: ButtonStyle(
+                        foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            ColorSelect.TheamColor)),
+                    onPressed: () {},
+                    child: const Text(
+                      sv_progress,
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                    decoration: myBoxDecoration(),
+                    child: Container(
+                      width: 100,
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        controller: _meterialNameController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "Material Name",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          ],
         ));
   }
 
   Widget cleaning(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-        child: const Column(
-          children: [],
+        margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(laser_powr),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _LaserPowerController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "300-3000",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(laser_freqey),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _LaserFreqController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "100-5000",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(pwm),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _PWFController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "0-100",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(woble_freq),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _wobbleFreqController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "0-200",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(clean_weidth),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _CleanWidthController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "20-80",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(lsr),
+                CupertinoSwitch(
+                  value: laserSwitch,
+                  onChanged: (value) {
+                    setState(() {
+                      laserSwitch = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(gs_manul),
+                CupertinoSwitch(
+                  value: gasManualSwitch,
+                  onChanged: (value) {
+                    setState(() {
+                      gasManualSwitch = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ],
         ));
   }
 
   Widget Weld_seam_Clean(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-        child: const Column(
-          children: [],
+        margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(laser_powr),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _LaserPowerController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "300-3000",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(laser_freqey),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _LaserFreqController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "100-5000",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(pwm),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _PWFController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "0-100",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(woble_freq),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _wobbleFreqController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "0-200",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(clean_weidth),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+                  decoration: myBoxDecoration(),
+                  child: SizedBox(
+                    width: 80.0,
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: ColorSelect.black, fontSize: 14),
+                        textAlign: TextAlign.center,
+                        controller: _CleanWidthController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "1-10",
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(lsr),
+                CupertinoSwitch(
+                  value: laserSwitch,
+                  onChanged: (value) {
+                    setState(() {
+                      laserSwitch = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(gs_manul),
+                CupertinoSwitch(
+                  value: gasManualSwitch,
+                  onChanged: (value) {
+                    setState(() {
+                      gasManualSwitch = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                label(Safety_lock),
+                CupertinoSwitch(
+                  value: SaftyLockSwitch,
+                  onChanged: (value) {
+                    setState(() {
+                      SaftyLockSwitch = value;
+                      _showTextInputDialog(context);
+                    });
+                  },
+                ),
+              ],
+            ),
+          ],
         ));
   }
 
@@ -405,6 +985,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget label(String text) {
+    return Text(text,
+        style: TextStyle(color: ColorSelect.TheamColor, fontSize: 16),
+        textAlign: TextAlign.center);
+  }
+
   BoxDecoration myBoxDecoration() {
     return BoxDecoration(
       border: Border.all(),
@@ -412,5 +998,57 @@ class _HomePageState extends State<HomePage> {
         Radius.circular(5.0),
       ),
     );
+  }
+
+  final _textFieldController = TextEditingController();
+  bool _obscureText = false;
+  bool showAlert = false;
+  late String _password;
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  Future<String?> _showTextInputDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Control Password'),
+            content: TextFormField(
+              keyboardType: TextInputType.text,
+              controller: _textFieldController,
+              obscureText: _obscureText, //This will obscure text dynamically
+              decoration: const InputDecoration(
+                hintText: 'Enter your password',
+                // Here is key idea
+                // suffixIcon: IconButton(
+                //   icon: Icon(
+                //     // Based on passwordVisible state choose the icon
+                //     _obscureText ? Icons.visibility : Icons.visibility_off,
+                //     color: Theme.of(context).primaryColorDark,
+                //   ),
+                //   onPressed: _toggle,
+                // ),
+              ),
+            ),
+            actions: <Widget>[
+              ElevatedButton(
+                child: const Text("Submit"),
+                onPressed: () {
+                  Navigator.pop(context, _textFieldController.text);
+                  showAlert = true;
+                },
+              ),
+              ElevatedButton(
+                  child: const Text('Cancel'),
+                  onPressed: () {
+                    Navigator.pop(context, _textFieldController.text);
+                  }),
+            ],
+          );
+        });
   }
 }
